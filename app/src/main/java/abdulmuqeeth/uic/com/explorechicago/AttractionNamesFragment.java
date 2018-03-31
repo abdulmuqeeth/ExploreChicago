@@ -32,6 +32,21 @@ public class AttractionNamesFragment extends ListFragment {
 
     }
 
+
+    //Declaring an interface to be used in the main activity to check if fragment gets attached
+    public interface ListSelectionListener {
+        public void onListSelection(int id);
+    }
+
+    private ListSelectionListener mListSelectionListener;
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        //super.onListItemClick(l, v, position, id);
+        getListView().setItemChecked(position, true);
+        mListSelectionListener.onListSelection(position);
+    }
+
     //Other methods
 
     @Override

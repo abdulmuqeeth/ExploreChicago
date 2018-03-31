@@ -9,11 +9,24 @@
         <item>Navy Pier</item>
         <item>Magnificent Mile</item>
         <item>Adler Planetarium</item>
-        <item>John Hancock Tower</item>
+        <item>360 Chicago</item>
         <item>Fields Museum</item>
-        <item>Chicago Art Institute</item>
-        <item>Cloud Gate</item>
-        <item>Shedd Museum</item>
+        <item>Art Institute of Chicago</item>
+        <item>Willis Tower</item>
+        <item>Shedd Aquarium</item>
         <item>Chicago Riverwalk</item>
+    </string-array>
+
+    <string-array name="attraction_websites">
+        <item>"https://www.lpzoo.org"</item>
+        <item>"https://navypier.org"</item>
+        <item>"https://www.themagnificentmile.com"</item>
+        <item>"https://www.adlerplanetarium.org"</item>
+        <item>"http://www.360chicago.com"</item>
+        <item>"https://www.fieldmuseum.org"</item>
+        <item>"http://www.artic.edu"</item>
+        <item>"http://www.willistower.com"</item>
+        <item>"https://www.sheddaquarium.org"</item>
+        <item>"https://www.chicagoriverwalk.us"</item>
     </string-array>
 </resources>
