@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">ExploreChicago</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="attraction_names">
+        <item>Lincoln Park Zoo</item>
+        <item>Navy Pier</item>
+        <item>Magnificent Mile</item>
+        <item>Adler Planetarium</item>
+        <item>John Hancock Tower</item>
+        <item>Fields Museum</item>
+        <item>Chicago Art Institute</item>
+        <item>Cloud Gate</item>
+        <item>Shedd Museum</item>
+        <item>Chicago Riverwalk</item>
+    </string-array>
 </resources>
