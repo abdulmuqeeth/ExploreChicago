@@ -1,6 +1,7 @@
 package abdulmuqeeth.uic.com.explorechicago;
 
 import android.app.ListFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class AttractionNamesFragment extends ListFragment {
 
@@ -45,6 +47,17 @@ public class AttractionNamesFragment extends ListFragment {
         //super.onListItemClick(l, v, position, id);
         getListView().setItemChecked(position, true);
         mListSelectionListener.onListSelection(position);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try{
+            mListSelectionListener = (ListSelectionListener) context;
+        }catch (ClassCastException e){
+            Toast.makeText(getActivity().getBaseContext(), "Fragment Not Attached", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //Other methods

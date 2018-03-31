@@ -2,8 +2,9 @@ package abdulmuqeeth.uic.com.explorechicago;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AttractionNamesFragment.ListSelectionListener{
 
     static String[] attractionTitles;
     static String[] attractionWebsite;
@@ -15,6 +16,12 @@ public class MainActivity extends AppCompatActivity {
 
         attractionTitles = getResources().getStringArray(R.array.attraction_names);
         attractionWebsite = getResources().getStringArray(R.array.attraction_websites);
+    }
+
+    //Implementing the interface method so that fragment can check if it got attached
+    @Override
+    public void onListSelection(int id) {
+        Toast.makeText(this, "attached", Toast.LENGTH_SHORT).show();
     }
 
     //Other Methods
