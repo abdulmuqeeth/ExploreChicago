@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="abdulmuqeeth.uic.com.explorechicago.AttractionPageFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    
+    <WebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PageFragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
