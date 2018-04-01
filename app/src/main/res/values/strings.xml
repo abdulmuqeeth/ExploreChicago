@@ -29,4 +29,25 @@
         <item>"https://www.sheddaquarium.org"</item>
         <item>"https://www.chicagoriverwalk.us"</item>
     </string-array>
+
+    <string-array name="restaurant_names">
+        <item>The Halal Guys</item>
+        <item>Kabul House</item>
+        <item>The Chicago Halal</item>
+        <item>Baba Pita</item>
+        <item>Epic Burger</item>
+        <item>Sabri Nihari</item>
+        <item>IDOF</item>
+    </string-array>
+
+    <string-array name="restaurant_websites">
+        <item>https://thehalalguys.com</item>
+        <item>https://www.kabulhouse.com</item>
+        <item>https://thechicagohalal.com</item>
+        <item>http://babapita.com</item>
+        <item>http://epicburger.com</item>
+        <item>http://www.sabrinihari.com</item>
+        <item>http://www.idreamoffalafel.com</item>
+    </string-array>
+
 </resources>

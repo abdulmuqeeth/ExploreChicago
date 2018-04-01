@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:baselineAligned="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context="abdulmuqeeth.uic.com.explorechicago.RestaurantsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <fragment
+        android:id="@+id/restaurant_name_frag"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:name="abdulmuqeeth.uic.com.explorechicago.RestaurantNamesFragment" />
+
+    <fragment
+        android:id="@+id/restaurant_page_frag"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:name="abdulmuqeeth.uic.com.explorechicago.RestaurantPageFragment" />
+</LinearLayout>

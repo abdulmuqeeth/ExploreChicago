@@ -5,9 +5,12 @@ import android.os.Bundle;
 
 public class RestaurantsActivity extends AppCompatActivity {
 
+    static String[] restaurantTitles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
+
+        restaurantTitles = getResources().getStringArray(R.array.restaurant_names);
     }
 }
