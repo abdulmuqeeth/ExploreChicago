@@ -34,4 +34,9 @@ public class RestaurantNamesFragment extends ListFragment {
 
        setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.title, RestaurantsActivity.restaurantTitles));
     }
+
+    //Declaring interface to be implemented inside activity
+    public interface ListSelectionListener{
+        public void onListSelection(int index);
+    }
 }
