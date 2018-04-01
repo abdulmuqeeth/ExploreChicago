@@ -30,7 +30,7 @@ public class AttractionNamesFragment extends ListFragment {
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.title, MainActivity.attractionTitles));
+        setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.title, AttractionsActivity.attractionTitles));
 
     }
 

@@ -3,11 +3,14 @@ package abdulmuqeeth.uic.com.explorechicago;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+import abdulmuqeeth.uic.com.explorechicago.AttractionNamesFragment.ListSelectionListener;
 
-public class MainActivity extends AppCompatActivity implements AttractionNamesFragment.ListSelectionListener{
+public class AttractionsActivity extends AppCompatActivity implements ListSelectionListener{
 
     static String[] attractionTitles;
     static String[] attractionWebsite;
+
+    private  AttractionPageFragment mAttractionPageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +19,16 @@ public class MainActivity extends AppCompatActivity implements AttractionNamesFr
 
         attractionTitles = getResources().getStringArray(R.array.attraction_names);
         attractionWebsite = getResources().getStringArray(R.array.attraction_websites);
+
+        mAttractionPageFragment = (AttractionPageFragment) getFragmentManager().findFragmentById(R.id.attraction_page_frag);
     }
 
     //Implementing the interface method so that fragment can check if it got attached
     @Override
     public void onListSelection(int id) {
-        Toast.makeText(this, "attached", Toast.LENGTH_SHORT).show();
+        if(mAttractionPageFragment.getCurrentShownIndex() != id){
+            mAttractionPageFragment.showWebpageAtIndex(id);
+        }
     }
 
     //Other Methods

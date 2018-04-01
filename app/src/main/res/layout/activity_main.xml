@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="abdulmuqeeth.uic.com.explorechicago.MainActivity">
+    tools:context="abdulmuqeeth.uic.com.explorechicago.AttractionsActivity">
 
     <fragment
         android:id="@+id/attraction_name_frag"

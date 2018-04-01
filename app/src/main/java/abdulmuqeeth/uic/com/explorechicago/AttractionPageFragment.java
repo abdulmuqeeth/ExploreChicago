@@ -1,20 +1,24 @@
 package abdulmuqeeth.uic.com.explorechicago;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 public class AttractionPageFragment extends Fragment {
 
     private WebView mWebView;
+    private WebSettings mWebSettings;
     private int mWebsiteArrayLength;
+
+    private int currentShownIndex = -1;
     // private OnFragmentInteractionListener mListener;
 
     public AttractionPageFragment() {
@@ -42,11 +46,22 @@ public class AttractionPageFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mWebView = (WebView) getActivity().findViewById(R.id.webview);
-        mWebsiteArrayLength = MainActivity.attractionWebsite.length;
+        mWebView.setWebViewClient(new WebViewClient());
+        mWebsiteArrayLength = AttractionsActivity.attractionWebsite.length;
+
+
     }
 
     public void showWebpageAtIndex(int index){
-        //TODO
+        if (index < 0 || index >= mWebsiteArrayLength){
+            return;
+        }
+        currentShownIndex = index;
+        mWebView.loadUrl(AttractionsActivity.attractionWebsite[index]);
+    }
+
+    public int getCurrentShownIndex(){
+        return currentShownIndex;
     }
 
     //Other Methods
