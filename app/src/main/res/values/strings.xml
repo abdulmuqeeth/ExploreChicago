@@ -50,4 +50,7 @@
         <item>"http://www.idreamoffalafel.com"</item>
     </string-array>
 
+    <string name="attractions">Attractions</string>
+    <string name="restaurants">Restaurants</string>
+
 </resources>
