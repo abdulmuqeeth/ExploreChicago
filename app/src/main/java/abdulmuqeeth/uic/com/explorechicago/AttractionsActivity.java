@@ -2,7 +2,6 @@ package abdulmuqeeth.uic.com.explorechicago;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 import abdulmuqeeth.uic.com.explorechicago.AttractionNamesFragment.ListSelectionListener;
 
 public class AttractionsActivity extends AppCompatActivity implements ListSelectionListener{
@@ -15,7 +14,7 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_attractions);
 
         attractionTitles = getResources().getStringArray(R.array.attraction_names);
         attractionWebsite = getResources().getStringArray(R.array.attraction_websites);
