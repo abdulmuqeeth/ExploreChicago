@@ -41,13 +41,13 @@
     </string-array>
 
     <string-array name="restaurant_websites">
-        <item>https://thehalalguys.com</item>
-        <item>https://www.kabulhouse.com</item>
-        <item>https://thechicagohalal.com</item>
-        <item>http://babapita.com</item>
-        <item>http://epicburger.com</item>
-        <item>http://www.sabrinihari.com</item>
-        <item>http://www.idreamoffalafel.com</item>
+        <item>"https://thehalalguys.com"</item>
+        <item>"https://www.kabulhouse.com"</item>
+        <item>"https://thechicagohalal.com"</item>
+        <item>"http://babapita.com"</item>
+        <item>"http://epicburger.com"</item>
+        <item>"http://www.sabrinihari.com"</item>
+        <item>"http://www.idreamoffalafel.com"</item>
     </string-array>
 
 </resources>

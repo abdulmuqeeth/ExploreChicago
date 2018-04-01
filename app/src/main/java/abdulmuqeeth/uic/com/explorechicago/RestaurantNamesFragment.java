@@ -57,7 +57,8 @@ public class RestaurantNamesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        //TODO do something when list item is selected
+        getListView().setItemChecked(position, true);
+        mListSelectionListener.onListSelection(position);
     }
 
     @Override
