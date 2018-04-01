@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class RestaurantNamesFragment extends ListFragment {
+
+    private ListSelectionListener mListSelectionListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,5 +41,15 @@ public class RestaurantNamesFragment extends ListFragment {
     //Declaring interface to be implemented inside activity
     public interface ListSelectionListener{
         public void onListSelection(int index);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListSelectionListener = (ListSelectionListener) context;
+        }catch (ClassCastException e){
+            Toast.makeText(getActivity().getBaseContext(), "Fragment Not Attached", Toast.LENGTH_SHORT).show();
+        }
     }
 }
