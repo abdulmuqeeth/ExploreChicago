@@ -43,6 +43,7 @@ public class RestaurantNamesFragment extends ListFragment {
         public void onListSelection(int index);
     }
 
+    //Checks if the fragment is attached by checking if the RestaurantActivity implemented the onListSelection Method
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -51,5 +52,46 @@ public class RestaurantNamesFragment extends ListFragment {
         }catch (ClassCastException e){
             Toast.makeText(getActivity().getBaseContext(), "Fragment Not Attached", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        //TODO do something when list item is selected
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }
