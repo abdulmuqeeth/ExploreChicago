@@ -13,9 +13,15 @@ import android.widget.Toast;
 
 public class AttractionNamesFragment extends ListFragment {
 
+    private int mCurrentIndex =-1;
+
+
+    private ListSelectionListener mListSelectionListener;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -23,6 +29,7 @@ public class AttractionNamesFragment extends ListFragment {
 
          return super.onCreateView(inflater, container, savedInstanceState);
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -32,21 +39,29 @@ public class AttractionNamesFragment extends ListFragment {
 
         setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.title, AttractionsActivity.attractionTitles));
 
-    }
+        if( mCurrentIndex != -1){
+            getListView().setItemChecked(mCurrentIndex, true);
+            mListSelectionListener.onListSelection(mCurrentIndex);
+        }
 
+    }
 
     //Declaring an interface to be used in the main activity to check if fragment gets attached
     public interface ListSelectionListener {
         public void onListSelection(int id);
-    }
 
-    private ListSelectionListener mListSelectionListener;
+    }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        //super.onListItemClick(l, v, position, id);
+        super.onListItemClick(l, v, position, id);
+        if(mCurrentIndex != position){
+            mCurrentIndex = position;
+            getListView().setItemChecked(position, true);
+            mListSelectionListener.onListSelection(position);
+        }
         getListView().setItemChecked(position, true);
-        mListSelectionListener.onListSelection(position);
+
     }
 
     @Override

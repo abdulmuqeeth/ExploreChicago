@@ -15,10 +15,12 @@ import android.widget.Toast;
 public class RestaurantNamesFragment extends ListFragment {
 
     private ListSelectionListener mListSelectionListener;
+    private int mCurrentIndex = -1;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Nullable
@@ -34,6 +36,11 @@ public class RestaurantNamesFragment extends ListFragment {
        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
        setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.title, RestaurantsActivity.restaurantTitles));
+
+       if(-1  != mCurrentIndex){
+           getListView().setItemChecked(mCurrentIndex, true);
+           mListSelectionListener.onListSelection(mCurrentIndex);
+       }
     }
 
     //Declaring interface to be implemented inside activity
@@ -55,8 +62,11 @@ public class RestaurantNamesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        getListView().setItemChecked(position, true);
-        mListSelectionListener.onListSelection(position);
+        if(mCurrentIndex != position){
+            mCurrentIndex = position;
+            mListSelectionListener.onListSelection(position);
+        }
+        getListView().setItemChecked(mCurrentIndex, true);
     }
 
     @Override
