@@ -3,6 +3,7 @@
     package="abdulmuqeeth.uic.com.explorechicago">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="edu.uic.cs478.sp18.project3" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AttractionsActivity">
-
-        </activity>
+        <activity android:name=".AttractionsActivity"></activity>
         <activity android:name=".RestaurantsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="edu.uic.cs478.sp18.project3">
+            <intent-filter>
+                <action android:name="abdulmuqeeth.uic.com.receiver_app.ATTRACTIONS" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="abdulmuqeeth.uic.com.receiver_app.RESTAURANTS" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
