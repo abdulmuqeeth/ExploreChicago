@@ -8,18 +8,13 @@
     android:orientation="horizontal"
     tools:context="abdulmuqeeth.uic.com.explorechicago.AttractionsActivity">
 
-    <fragment
-        android:id="@+id/attraction_name_frag"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:name="abdulmuqeeth.uic.com.explorechicago.AttractionNamesFragment" />
-
-    <fragment
-        android:id="@+id/attraction_page_frag"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:name="abdulmuqeeth.uic.com.explorechicago.AttractionPageFragment" />
+    <FrameLayout
+        android:id="@+id/attractions_name_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+    <FrameLayout
+        android:id="@+id/attractions_page_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
 
 </LinearLayout>

@@ -1,10 +1,15 @@
 package abdulmuqeeth.uic.com.explorechicago;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import abdulmuqeeth.uic.com.explorechicago.AttractionNamesFragment.ListSelectionListener;
 
@@ -13,7 +18,11 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
     static String[] attractionTitles;
     static String[] attractionWebsite;
 
-    private  AttractionPageFragment mAttractionPageFragment;
+    private final AttractionPageFragment mAttractionPageFragment =  new AttractionPageFragment();
+
+    private FrameLayout namesFrameLayout;
+    private FrameLayout pageFrameLayout;
+    private FragmentManager mFragmentManager;
 
     final static int ATTRACTIONS_ACT_ID =0;
     final static int RESTAURANT_ACT_ID = 1;
@@ -21,17 +30,57 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attractions);
 
         attractionTitles = getResources().getStringArray(R.array.attraction_names);
         attractionWebsite = getResources().getStringArray(R.array.attraction_websites);
 
-        mAttractionPageFragment = (AttractionPageFragment) getFragmentManager().findFragmentById(R.id.attraction_page_frag);
+        setContentView(R.layout.activity_attractions);
+
+        namesFrameLayout = (FrameLayout) findViewById(R.id.attractions_name_container);
+        pageFrameLayout = (FrameLayout) findViewById(R.id.attractions_page_container);
+
+        mFragmentManager = getFragmentManager();
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.attractions_name_container, new AttractionNamesFragment());
+
+        fragmentTransaction.commit();
+
+        //Reset when backstack changes
+        mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                changeLayout();
+            }
+        });
+
+    }
+
+    private void changeLayout(){
+        if(!mAttractionPageFragment.isAdded()){
+            namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+        else{
+            namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1f));
+            pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,2f));
+        }
     }
 
     //Implementing the interface method so that fragment can check if it got attached
     @Override
     public void onListSelection(int id) {
+
+        if(!mAttractionPageFragment.isAdded()){
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.attractions_page_container, mAttractionPageFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+            mFragmentManager.executePendingTransactions();
+        }
+
         if(mAttractionPageFragment.getCurrentShownIndex() != id){
             mAttractionPageFragment.showWebpageAtIndex(id);
         }
