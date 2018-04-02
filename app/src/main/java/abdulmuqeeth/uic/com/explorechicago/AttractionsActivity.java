@@ -3,6 +3,7 @@ package abdulmuqeeth.uic.com.explorechicago;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -58,13 +59,21 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
     }
 
     private void changeLayout(){
+
         if(!mAttractionPageFragment.isAdded()){
-            namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
+            //Make Names Fragment Occupy all the space
+            namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT));
         }
         else{
-            namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1f));
-            pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,2f));
+            if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
+                namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT));
+                pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            }else{
+                namesFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+                pageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 2f));
+            }
+
         }
     }
 
@@ -72,18 +81,30 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
     @Override
     public void onListSelection(int id) {
 
-        if(!mAttractionPageFragment.isAdded()){
+        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.attractions_page_container, mAttractionPageFragment);
+            fragmentTransaction.replace(R.id.attractions_page_container, mAttractionPageFragment);
+
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-
             mFragmentManager.executePendingTransactions();
         }
+        else{
+            if(!mAttractionPageFragment.isAdded()){
+                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
-        if(mAttractionPageFragment.getCurrentShownIndex() != id){
-            mAttractionPageFragment.showWebpageAtIndex(id);
+                fragmentTransaction.add(R.id.attractions_page_container, mAttractionPageFragment);
+
+                fragmentTransaction.addToBackStack(null);
+
+                fragmentTransaction.commit();
+
+                mFragmentManager.executePendingTransactions();
+            }
         }
+
+        //made change here : removed current index check
+        mAttractionPageFragment.showWebpageAtIndex(id);
     }
 
     //Method to check if the activity should display an Options menu
@@ -124,6 +145,12 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
             Intent mIntent = new Intent(AttractionsActivity.this, RestaurantsActivity.class);
             startActivity(mIntent);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        changeLayout();
     }
 
     //Other Methods

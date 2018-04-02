@@ -1,20 +1,16 @@
 package abdulmuqeeth.uic.com.explorechicago;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import abdulmuqeeth.uic.com.explorechicago.RestaurantNamesFragment.ListSelectionListener;
 
@@ -37,13 +33,6 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
-            Toast.makeText(this, "Landscape", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Portrait", Toast.LENGTH_SHORT).show();
-        }
-
         //Reading restaurant names and websites from resources
         restaurantTitles = getResources().getStringArray(R.array.restaurant_names);
         restaurantWebsites = getResources().getStringArray(R.array.restaurant_websites);
@@ -60,13 +49,11 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
         fragmentTransaction.replace(R.id.restaurant_name_frag_container, new RestaurantNamesFragment());
 
         fragmentTransaction.commit();
-        Toast.makeText(this, "commitedoncreate", Toast.LENGTH_SHORT).show();
 
         //Reset the layout when backstack changes
         mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                Toast.makeText(getBaseContext(), "onbackstackchange", Toast.LENGTH_SHORT).show();
                 changeLayout();
             }
         });
@@ -75,18 +62,15 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
     private void changeLayout(){
 
         if(!mRestaurantPageFragment.isAdded()){
-            Log.i("here", "inChangeLayout when not added");
             //Make Names Fragment Occupy all the space
             mNameFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
             mPageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT));
         }
         else{
             if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
-                Log.i("here1", "inChangeLayout");
                 mNameFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT));
                 mPageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
             }else{
-                Log.i("here", "inChangeLayout");
                 mNameFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
                 mPageFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 2f));
             }
@@ -98,8 +82,6 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
     //Implementing onListSelectionListener from interface ListSelectionListener of RestaurantNamesFragment
     @Override
     public void onListSelection(int index) {
-        Toast.makeText(this, "onListSelection", Toast.LENGTH_SHORT).show();
-
 
         if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -108,7 +90,6 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             mFragmentManager.executePendingTransactions();
-            Toast.makeText(this, "here", Toast.LENGTH_SHORT).show();
         }
         else{
             if(!mRestaurantPageFragment.isAdded()){
@@ -124,10 +105,8 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
             }
         }
 
-
-        if (mRestaurantPageFragment.getCurrentShownIndex() != index) {
-            mRestaurantPageFragment.showRestaurantPage(index);
-        }
+        //made change here : removed current index check
+        mRestaurantPageFragment.showRestaurantPage(index);
     }
 
     //Method to check if the activity should display an Options menu
@@ -173,12 +152,37 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
-            Toast.makeText(this, "Landscape", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Portrait", Toast.LENGTH_SHORT).show();
-        }
         changeLayout();
+    }
+
+    //Other Methods
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

@@ -55,11 +55,10 @@ public class AttractionNamesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        if(mCurrentIndex != position){
+        //made change here : removed current index check
             mCurrentIndex = position;
             getListView().setItemChecked(position, true);
             mListSelectionListener.onListSelection(position);
-        }
         getListView().setItemChecked(position, true);
 
     }

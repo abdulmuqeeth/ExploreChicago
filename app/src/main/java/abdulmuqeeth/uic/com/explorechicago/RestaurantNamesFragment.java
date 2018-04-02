@@ -62,10 +62,9 @@ public class RestaurantNamesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        if(mCurrentIndex != position){
+        //made change here : removed current index check
             mCurrentIndex = position;
             mListSelectionListener.onListSelection(position);
-        }
         getListView().setItemChecked(mCurrentIndex, true);
     }
 
