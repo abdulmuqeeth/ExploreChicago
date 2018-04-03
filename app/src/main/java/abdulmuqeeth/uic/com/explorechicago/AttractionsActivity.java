@@ -20,6 +20,7 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
     static String[] attractionWebsite;
 
     private final AttractionPageFragment mAttractionPageFragment =  new AttractionPageFragment();
+    private final AttractionNamesFragment mAttractionNamesFragment =  new AttractionNamesFragment();
 
     private FrameLayout namesFrameLayout;
     private FrameLayout pageFrameLayout;
@@ -44,7 +45,7 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
 
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.attractions_name_container, new AttractionNamesFragment());
+        fragmentTransaction.replace(R.id.attractions_name_container, mAttractionNamesFragment);
 
         fragmentTransaction.commit();
 
@@ -131,26 +132,31 @@ public class AttractionsActivity extends AppCompatActivity implements ListSelect
 
         switch (item.getItemId()) {
             case ATTRACTIONS_ACT_ID :
-                return true;
+                break;
             case RESTAURANT_ACT_ID :
                 goToRestaurantsActivity();
-                return true;
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     private void goToRestaurantsActivity(){
-        if(!this.getLocalClassName().equals("RestaurantsActivity")){
             Intent mIntent = new Intent(AttractionsActivity.this, RestaurantsActivity.class);
             startActivity(mIntent);
-        }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         changeLayout();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mAttractionNamesFragment.getListView().clearChoices();
     }
 
     //Other Methods

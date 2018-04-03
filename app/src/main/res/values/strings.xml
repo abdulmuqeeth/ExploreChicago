@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">ExploreChicago</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="attraction_names">
         <item>Lincoln Park Zoo</item>
@@ -32,8 +30,8 @@
 
     <string-array name="restaurant_names">
         <item>The Halal Guys</item>
-        <item>Kabul House</item>
         <item>The Chicago Halal</item>
+        <item>Kabul House</item>
         <item>Baba Pita</item>
         <item>Epic Burger</item>
         <item>Sabri Nihari</item>
@@ -42,8 +40,8 @@
 
     <string-array name="restaurant_websites">
         <item>"https://thehalalguys.com"</item>
-        <item>"https://www.kabulhouse.com"</item>
         <item>"https://thechicagohalal.com"</item>
+        <item>"https://www.kabulhouse.com"</item>
         <item>"http://babapita.com"</item>
         <item>"http://epicburger.com"</item>
         <item>"http://www.sabrinihari.com"</item>

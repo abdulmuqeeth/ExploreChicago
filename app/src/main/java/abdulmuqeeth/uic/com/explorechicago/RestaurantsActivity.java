@@ -23,6 +23,7 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
     final static int RESTAURANT_ACT_ID = 1;
 
     private final RestaurantPageFragment mRestaurantPageFragment = new RestaurantPageFragment();
+    private final RestaurantNamesFragment mRestaurantNamesFragment = new RestaurantNamesFragment();
 
     private FragmentManager mFragmentManager;
     private FrameLayout mNameFrameLayout;
@@ -32,7 +33,6 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //Reading restaurant names and websites from resources
         restaurantTitles = getResources().getStringArray(R.array.restaurant_names);
         restaurantWebsites = getResources().getStringArray(R.array.restaurant_websites);
@@ -46,7 +46,7 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
 
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.restaurant_name_frag_container, new RestaurantNamesFragment());
+        fragmentTransaction.replace(R.id.restaurant_name_frag_container, mRestaurantNamesFragment);
 
         fragmentTransaction.commit();
 
@@ -133,26 +133,31 @@ public class RestaurantsActivity extends AppCompatActivity implements ListSelect
 
         switch (item.getItemId()) {
             case ATTRACTIONS_ACT_ID:
-                goToAttractiosActivity();
-                return true;
+                goToAttractionsActivity();
+                break;
             case RESTAURANT_ACT_ID:
-                return true;
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
-    private void goToAttractiosActivity() {
-        if (!this.getLocalClassName().equals("AttractionsActivity")) {
+    private void goToAttractionsActivity() {
             Intent mIntent = new Intent(RestaurantsActivity.this, AttractionsActivity.class);
             startActivity(mIntent);
-        }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         changeLayout();
+    }
+
+    @Override
+    public void onBackPressed() {
+        mRestaurantNamesFragment.getListView().clearChoices();
+        super.onBackPressed();
     }
 
     //Other Methods
